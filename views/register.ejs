@@ -1,0 +1,30 @@
+<div class="auth-page">
+  <h1>Create an account</h1>
+  <div class="card">
+    <% if (typeof error !== 'undefined' && error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <form method="POST" action="/register">
+      <label>Your name</label>
+      <input type="text" name="name" required />
+
+      <label>Company name</label>
+      <input type="text" name="company" required />
+
+      <label>Email</label>
+      <input type="email" name="email" required />
+
+      <label>Password</label>
+      <input type="password" name="password" required />
+
+      <div class="form-actions">
+        <button type="submit" class="btn">Create account</button>
+      </div>
+    </form>
+  </div>
+
+  <p class="auth-footer">
+    Already have an account? <a href="/login">Log in</a>
+  </p>
+</div>

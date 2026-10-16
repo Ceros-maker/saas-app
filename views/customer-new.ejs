@@ -1,0 +1,23 @@
+<h1>New Customer</h1>
+
+<div class="card">
+  <% if (typeof error !== 'undefined' && error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+
+  <form method="POST" action="/customers">
+    <label>Name</label>
+    <input type="text" name="name" required autofocus />
+
+    <label>Email</label>
+    <input type="email" name="email" />
+
+    <label>Phone</label>
+    <input type="text" name="phone" />
+
+    <div class="form-actions">
+      <button type="submit" class="btn">Create Customer</button>
+      <a href="/customers" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>

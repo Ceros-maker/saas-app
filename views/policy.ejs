@@ -1,0 +1,26 @@
+<h1><%= policy.policy_number %></h1>
+
+<div class="card">
+  <p><strong>Customer:</strong> <%= policy.customer_name %></p>
+  <p><strong>Premium:</strong> $<%= (policy.premium / 100).toFixed(2) %></p>
+  <p><strong>Start:</strong> <%= policy.start_date %></p>
+  <p><strong>End:</strong> <%= policy.end_date %></p>
+
+  <div class="form-actions">
+    <a href="/policies/<%= policy.id %>/edit" class="btn">Edit</a>
+    <a href="/policies" class="btn btn-secondary">Back</a>
+    <form
+      method="POST"
+      action="/policies/<%= policy.id %>/delete"
+      style="margin: 0"
+    >
+      <button
+        type="submit"
+        class="btn btn-danger"
+        onclick="return confirm('Delete this policy?');"
+      >
+        Delete
+      </button>
+    </form>
+  </div>
+</div>

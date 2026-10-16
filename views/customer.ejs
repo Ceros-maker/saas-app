@@ -1,0 +1,44 @@
+<h1><%= customer.name %></h1>
+
+<div class="card">
+  <p><strong>Email:</strong> <%= customer.email || '—' %></p>
+  <p><strong>Phone:</strong> <%= customer.phone || '—' %></p>
+
+  <div class="form-actions">
+    <a href="/customers/<%= customer.id %>/edit" class="btn">Edit</a>
+    <a href="/customers" class="btn btn-secondary">Back</a>
+    <form method="POST" action="/customers/<%= customer.id %>/delete" style="margin: 0;">
+      <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this customer?');">Delete</button>
+    </form>
+  </div>
+</div>
+
+<h2 style="margin-top: 32px;">Policies</h2>
+
+<% if (policies.length === 0) { %>
+  <div class="empty">
+    <p>No policies for this customer yet.</p>
+    <a href="/policies/new" class="btn">Create a policy</a>
+  </div>
+<% } else { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Policy #</th>
+        <th>Premium</th>
+        <th>Start</th>
+        <th>End</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const p of policies) { %>
+        <tr>
+          <td><a href="/policies/<%= p.id %>"><%= p.policy_number %></a></td>
+          <td>$<%= (p.premium / 100).toFixed(2) %></td>
+          <td><%= p.start_date %></td>
+          <td><%= p.end_date %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+<% } %>

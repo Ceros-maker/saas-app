@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Customers</h1>
+  <a href="/customers/new" class="btn">+ New Customer</a>
+</div>
+
+<% if (customers.length === 0) { %>
+  <div class="empty">
+    <p>No customers yet.</p>
+    <a href="/customers/new" class="btn">Add your first customer</a>
+  </div>
+<% } else { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Policies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const c of customers) { %>
+        <tr>
+          <td><a href="/customers/<%= c.id %>"><%= c.name %></a></td>
+          <td><%= c.email || '—' %></td>
+          <td><%= c.phone || '—' %></td>
+          <td><%= c.policy_count %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+<% } %>

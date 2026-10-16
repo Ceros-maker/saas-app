@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>Policies</h1>
+  <a href="/policies/new" class="btn">+ New Policy</a>
+</div>
+
+<% if (policies.length === 0) { %>
+  <div class="empty">
+    <p>No policies yet.</p>
+    <a href="/policies/new" class="btn">Create your first policy</a>
+  </div>
+<% } else { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Policy #</th>
+        <th>Customer</th>
+        <th>Premium</th>
+        <th>Start</th>
+        <th>End</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const policy of policies) { %>
+        <tr>
+          <td><a href="/policies/<%= policy.id %>"><%= policy.policy_number %></a></td>
+          <td><%= policy.customer_name %></td>
+          <td>$<%= (policy.premium / 100).toFixed(2) %></td>
+          <td><%= policy.start_date %></td>
+          <td><%= policy.end_date %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+<% } %>

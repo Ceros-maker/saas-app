@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %> · SaaS Demo</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <nav class="main-nav">
+      <div class="nav-inner">
+        <a href="/dashboard" class="brand">SaaS Demo</a>
+        <div class="nav-links">
+          <% if (typeof user !== 'undefined' && user) { %>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/policies">Policies</a>
+            <a href="/customers">Customers</a>
+            <form method="POST" action="/logout" class="logout-form">
+              <button type="submit">Log out</button>
+            </form>
+          <% } else { %>
+            <a href="/login">Log in</a>
+            <a href="/register">Register</a>
+          <% } %>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <%- body %>
+    </main>
+  </body>
+</html>

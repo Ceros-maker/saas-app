@@ -1,0 +1,33 @@
+<h1>Edit Policy</h1>
+
+<div class="card">
+  <% if (typeof error !== 'undefined' && error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+
+  <form method="POST" action="/policies/<%= policy.id %>/edit">
+    <label>Policy Number</label>
+    <input type="text" name="policy_number" value="<%= policy.policy_number %>" required />
+
+    <select name="customer_id" required>
+  <option value="">Select a customer...</option>
+  <% for (const c of customers) { %>
+    <option value="<%= c.id %>" <%= c.id === policy.customer_id ? 'selected' : '' %>><%= c.name %></option>
+  <% } %>
+</select>
+
+    <label>Premium (USD)</label>
+    <input type="number" name="premium" step="0.01" min="0" value="<%= (policy.premium / 100).toFixed(2) %>" required />
+
+    <label>Start Date</label>
+    <input type="date" name="start_date" value="<%= policy.start_date %>" required />
+
+    <label>End Date</label>
+    <input type="date" name="end_date" value="<%= policy.end_date %>" required />
+
+    <div class="form-actions">
+      <button type="submit" class="btn">Save Changes</button>
+      <a href="/policies/<%= policy.id %>" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>

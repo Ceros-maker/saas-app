@@ -1,0 +1,23 @@
+<h1>Edit Customer</h1>
+
+<div class="card">
+  <% if (typeof error !== 'undefined' && error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+
+  <form method="POST" action="/customers/<%= customer.id %>/edit">
+    <label>Name</label>
+    <input type="text" name="name" value="<%= customer.name %>" required />
+
+    <label>Email</label>
+    <input type="email" name="email" value="<%= customer.email || '' %>" />
+
+    <label>Phone</label>
+    <input type="text" name="phone" value="<%= customer.phone || '' %>" />
+
+    <div class="form-actions">
+      <button type="submit" class="btn">Save Changes</button>
+      <a href="/customers/<%= customer.id %>" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
