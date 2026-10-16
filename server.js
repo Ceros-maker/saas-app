@@ -40,10 +40,6 @@ app.use('/', authRoutes);
 app.use('/', policyRoutes);
 app.use('/', customerRoutes);
 
-app.get('/', (req, res) => {
-    res.send('blog is running');
-});
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
