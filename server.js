@@ -40,6 +40,10 @@ app.use('/', authRoutes);
 app.use('/', policyRoutes);
 app.use('/', customerRoutes);
 
+app.get('/', (req, res) => {
+  res.redirect(req.session.userId ? '/dashboard' : '/login');
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
