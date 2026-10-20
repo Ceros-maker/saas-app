@@ -1,7 +1,11 @@
-const Database = require('better-sqlite3');
-const bcrypt = require('bcrypt');
+const { Pool } = require('pg');
 
-const db = new Database('saas.db');
-db.pragma('foreign_keys = ON');
+const pool = new Pool({
+  host: 'localhost',
+  port: 5432,
+  database: 'saas',
+  user: 'postgres',
+  password: 'devpassword',
+});
 
-module.exports = db;
+module.exports = pool;

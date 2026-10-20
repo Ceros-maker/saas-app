@@ -22,14 +22,21 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.set('views', path.join(__dirname, 'views'));
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
+  try {
     if (req.session.userId) {
-        const user = db.prepare('SELECT id, name, email, role FROM users WHERE id = ?').get(req.session.userId);
-        res.locals.user = user;
+      const result = await db.query(
+        'SELECT id, name, email, role FROM users WHERE id = $1',
+        [req.session.userId]
+      );
+      res.locals.user = result.rows[0];
     } else {
-        res.locals.user = null;
+      res.locals.user = null;
     }
     next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 const authRoutes = require('./routes/auth');
